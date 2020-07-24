@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/ywlh681tu8ytyvee?svg=true)](https://ci.appveyor.com/project/PolyakovAlexQA/patterns-faker)
