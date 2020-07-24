@@ -3,8 +3,10 @@ package ru.netology;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.withText;
@@ -183,6 +185,7 @@ public class PlanningOrderDeliveryCard {
         form.$$("[role=button]").find(exactText("Запланировать")).click();
         $(".input_invalid[data-test-id=agreement]").shouldHave(exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных"));
     }
+
     @Test
     void CityAndDateComplexElementsOrderDeliveryCardTest() {
         open("http://localhost:9999");
