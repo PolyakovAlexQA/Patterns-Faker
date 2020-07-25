@@ -12,10 +12,11 @@ import java.util.Locale;
 
         public static Registration.RegistrationUser generateByNamePhoneCity() {
             Faker faker = new Faker(new Locale("RU"));
-            return new Registration.RegistrationUser(
-                    faker.address().city(),
+            return new ru.netology. Registration.RegistrationUser(
                     faker.name().lastName()+" "+faker.name().firstName(),
-                    faker.phoneNumber().phoneNumber());
+                     faker.phoneNumber().phoneNumber(),
+                     faker.address().city());
+
 
         }
     }
