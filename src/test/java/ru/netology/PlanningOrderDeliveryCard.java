@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
+
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static ru.netology.DataGenerator.generateByNamePhoneCity;
@@ -15,6 +15,7 @@ public class PlanningOrderDeliveryCard {
     Registration.RegistrationUser generateByNamePhone = generateByNamePhoneCity();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     String date = formatter.format(LocalDateTime.now().plusDays(7));
+
 
     @Test
     void PlanningOrderDeliveryCardTest() {
@@ -28,6 +29,7 @@ public class PlanningOrderDeliveryCard {
         $$("[role=button]").find(exactText("Запланировать")).click();
         $(withText("Успешно!")).waitUntil(visible, 15000);
         $(withText("Встреча успешно запланирована на")).waitUntil(visible, 15000);
+        $(withText(date)).waitUntil(visible, 15000);
 
     }
 
@@ -49,6 +51,7 @@ public class PlanningOrderDeliveryCard {
         $$("div.notification__content > button").find(exactText("Перепланировать")).click();
         $(withText("Успешно!")).waitUntil(visible, 15000);
         $(withText("Встреча успешно запланирована на")).waitUntil(visible, 15000);
+        $(withText(date)).waitUntil(visible, 15000);
 
     }
 
@@ -101,7 +104,6 @@ public class PlanningOrderDeliveryCard {
         $$("[role=button]").find(exactText("Запланировать")).click();
         $(".input_invalid[data-test-id=name]").shouldHave(exactText("Фамилия и имя Поле обязательно для заполнения"));
     }
-
 
     @Test
     void ValidationCheckCityOrderDeliveryCardTest() {
