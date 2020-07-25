@@ -1,12 +1,9 @@
 package ru.netology;
-
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.withText;
@@ -18,7 +15,6 @@ public class PlanningOrderDeliveryCard {
     Registration.RegistrationUser generateByNamePhone = generateByNamePhoneCity();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     String date = formatter.format(LocalDateTime.now().plusDays(7));
-
 
     @Test
     void PlanningOrderDeliveryCardTest() {
@@ -32,7 +28,6 @@ public class PlanningOrderDeliveryCard {
         $$("[role=button]").find(exactText("Запланировать")).click();
         $(withText("Успешно!")).waitUntil(visible, 15000);
         $(withText("Встреча успешно запланирована на")).waitUntil(visible, 15000);
-
 
     }
 
