@@ -10,6 +10,5 @@ public class Registration {
         private String phoneNumber;
         private String city;
 
-
     }
 }
