@@ -2,25 +2,26 @@ package ru.netology;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import java.time.LocalDate;
+import java.time.temporal.TemporalQuery;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
+import static java.time.temporal.TemporalQueries.localDate;
 import static ru.netology.DataGenerator.generateByNamePhoneCity;
 
 public class PlanningOrderDeliveryCard {
 
     Registration.RegistrationUser generateByNamePhone = generateByNamePhoneCity();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-    String date = formatter.format(LocalDateTime.now().plusDays(7));
+
 
 
     @Test
     void PlanningOrderDeliveryCardTest() {
         open("http://localhost:9999");
-        $("[data-test-id=city] input").setValue(generateByNamePhone.getCity());
+        $("[data-test-id=city] input").setValue();
         $("[data-test-id=date] input").sendKeys(Keys.CONTROL + "a", Keys.DELETE);
         $("[data-test-id=date] input").setValue(date);
         $("[data-test-id=name] input").setValue(generateByNamePhone.getFullName());
