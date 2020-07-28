@@ -1,18 +1,18 @@
 package ru.netology;
-
 import com.github.javafaker.Faker;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+
+
 
 public class DataGenerator {
     public DataGenerator() {
     }
 
     private static String getCity(String Locale) {
-        Faker faker = new Faker(new Locale(Locale));
+
         String[] cityList = new String[]{
                 "Абакан", "Анадырь", "Архангельск", "Астрахань", "Барнаул", "Белгород",
                 "Биробиджан", "Благовещенск", "Брянск", "Великий Новгород", "Владивосток",
@@ -27,7 +27,7 @@ public class DataGenerator {
                 "Смоленск", "Ставрополь", "Сыктывкар", "Тамбов", "Тверь", "Томск", "Тула", "Тюмень",
                 "Улан-Удэ", "Ульяновск", "Уфа", "Хабаровск", "Ханты-Мансийск", "Чебоксары",
                 "Челябинск", "Черкесск", "Чита", "Элиста", "Южно-Сахалинск", "Якутск", "Ярославль"};
-        return cityList[faker.random().nextInt(0, cityList.length - 1)];
+
 
     public static Registration.RegistrationUser generateByNamePhoneCity() {
         Faker faker = new Faker(new Locale("RU"));
