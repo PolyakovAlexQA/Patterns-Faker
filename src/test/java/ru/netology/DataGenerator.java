@@ -36,13 +36,13 @@ public class DataGenerator {
                 faker.phoneNumber().phoneNumber());
 
     }
-    public static String LocalDate(int daysToAdd) {
-        LocalDate endDate = LocalDate.now().plusDays(daysToAdd);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String date = formatter.format(LocalDateTime.now().plusDays(7));
-        return endDate.format(formatter);
+        public static String getDate(int daysToAdd) {
+            LocalDate endDate = LocalDate.now().plusDays(daysToAdd);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            return endDate.format(formatter);
+        }
+
     }
-}
 
 
 
