@@ -31,24 +31,24 @@ public class DataGenerator {
                 "Челябинск", "Черкесск", "Чита", "Элиста", "Южно-Сахалинск", "Якутск", "Ярославль"};
         Random random = new Random();
         int index = random.nextInt(cityList.length);
-        return cityList[index];
+        final String s = cityList[index];
+        return s;
+    }
 
-
-        public static Registration.RegistrationUser generateUser{
-            Faker faker = new Faker(new Locale("RU"));
-            return new Registration.RegistrationUser(
-                    getCity(),
-                    getDate(4),
-                    faker.name().lastName() + " " + faker.name().firstName(),
-                    faker.phoneNumber().phoneNumber());
-        }
+    public static Registration.RegistrationUser generateUser() {
+        Faker faker = new Faker(new Locale("RU"));
+        return new Registration.RegistrationUser(
+                faker.name().lastName()+" "+faker.name().firstName(),
+                getDate(4),
+                getCity(),
+                faker.phoneNumber().phoneNumber());
+    }
         public static String getDate ( int daysToAdd){
             LocalDate endDate = LocalDate.now().plusDays(daysToAdd);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             return endDate.format(formatter);
         }
     }
-}
 
 
 
