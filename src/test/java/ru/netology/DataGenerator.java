@@ -38,9 +38,9 @@ public class DataGenerator {
     public static Registration.RegistrationUser generateUser() {
         Faker faker = new Faker(new Locale("RU"));
         return new Registration.RegistrationUser(
-                faker.name().lastName()+" "+faker.name().firstName(),
-                getDate(4),
                 getCity(),
+                getDate(4),
+                faker.name().lastName()+" "+faker.name().firstName(),
                 faker.phoneNumber().phoneNumber());
     }
         public static String getDate ( int daysToAdd){
