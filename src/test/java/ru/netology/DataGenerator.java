@@ -8,8 +8,6 @@ import java.util.Locale;
 import java.util.Random;
 
 
-
-
 public class DataGenerator {
     public DataGenerator() {
     }
@@ -31,8 +29,7 @@ public class DataGenerator {
                 "Челябинск", "Черкесск", "Чита", "Элиста", "Южно-Сахалинск", "Якутск", "Ярославль"};
         Random random = new Random();
         int index = random.nextInt(cityList.length);
-        final String s = cityList[index];
-        return s;
+        return cityList[index];
     }
 
     public static Registration.RegistrationUser generateUser() {
@@ -40,15 +37,16 @@ public class DataGenerator {
         return new Registration.RegistrationUser(
                 getCity(),
                 getDate(4),
-                faker.name().lastName()+" "+faker.name().firstName(),
+                faker.name().lastName() + " " + faker.name().firstName(),
                 faker.phoneNumber().phoneNumber());
     }
-        public static String getDate ( int daysToAdd){
-            LocalDate endDate = LocalDate.now().plusDays(daysToAdd);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            return endDate.format(formatter);
-        }
+
+    public static String getDate(int daysToAdd) {
+        LocalDate endDate = LocalDate.now().plusDays(daysToAdd);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return endDate.format(formatter);
     }
+}
 
 
 

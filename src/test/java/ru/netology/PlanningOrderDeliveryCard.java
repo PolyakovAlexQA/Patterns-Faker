@@ -3,16 +3,15 @@ package ru.netology;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static ru.netology.DataGenerator.generateUser;
+
+
 public class PlanningOrderDeliveryCard {
-
     Registration.RegistrationUser user = generateUser();
-
-
-
 
     @Test
     void PlanningOrderDeliveryCardTest() {
@@ -26,9 +25,8 @@ public class PlanningOrderDeliveryCard {
         $$("[role=button]").find(exactText("Запланировать")).click();
         $("[data-test-id=success-notification]").waitUntil(visible, 15000);
         $("[data-test-id=success-notification] .notification__content").shouldHave(text("Встреча успешно запланирована на")).shouldHave(text(user.getDate()));
-
-
     }
+
     @Test
     void ReplayPlanningOrderDeliveryCardTest() {
         open("http://localhost:9999");
@@ -41,14 +39,12 @@ public class PlanningOrderDeliveryCard {
         $$("[role=button]").find(exactText("Запланировать")).click();
         $("[data-test-id=success-notification]").waitUntil(visible, 15000);
         $("[data-test-id=date] input").sendKeys(Keys.CONTROL + "a", Keys.DELETE);
-        $("[data-test-id=date] input").setValue("21.08.2020");
+        $("[data-test-id=date] input").setValue(user.getDate());
         $$("[role=button]").find(exactText("Запланировать")).click();
         $(withText("У вас уже запланирована встреча на другую дату. Перепланировать?")).waitUntil(visible, 15000);
         $$("div.notification__content > button").find(exactText("Перепланировать")).click();
         $("[data-test-id=success-notification]").waitUntil(visible, 15000);
-        $("[data-test-id=success-notification] .notification__content").shouldHave(text("Встреча успешно запланирована на")).shouldHave(text("21.08.2020"));
-
-
+        $("[data-test-id=success-notification] .notification__content").shouldHave(text("Встреча успешно запланирована на")).shouldHave(text(user.getDate()));
     }
 
     @Test
@@ -75,7 +71,6 @@ public class PlanningOrderDeliveryCard {
         $$("[role=button]").find(exactText("Запланировать")).click();
         $(".input_invalid[data-test-id=city]").shouldHave(exactText("Поле обязательно для заполнения"));
     }
-
 
     @Test
     void EmptyNumberPhoneOrderDeliveryCardTest() {
@@ -141,7 +136,6 @@ public class PlanningOrderDeliveryCard {
         $(".input_invalid[data-test-id=name]").shouldHave(exactText("Фамилия и имя Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
 
     }
-
 
     @Test
     void EmptyCheckBoxOrderDeliveryCardTest() {
