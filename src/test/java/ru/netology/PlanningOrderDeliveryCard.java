@@ -8,10 +8,13 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static ru.netology.DataGenerator.generateUser;
+import static ru.netology.DataGenerator.getDate;
 
 
 public class PlanningOrderDeliveryCard {
     Registration.RegistrationUser user = generateUser();
+    String otherDate = getDate(7);
+
 
     @Test
     void PlanningOrderDeliveryCardTest() {
@@ -39,12 +42,12 @@ public class PlanningOrderDeliveryCard {
         $$("[role=button]").find(exactText("Запланировать")).click();
         $("[data-test-id=success-notification]").waitUntil(visible, 15000);
         $("[data-test-id=date] input").sendKeys(Keys.CONTROL + "a", Keys.DELETE);
-        $("[data-test-id=date] input").setValue(user.getDate());
+        $("[data-test-id=date] input").setValue(otherDate);
         $$("[role=button]").find(exactText("Запланировать")).click();
         $(withText("У вас уже запланирована встреча на другую дату. Перепланировать?")).waitUntil(visible, 15000);
         $$("div.notification__content > button").find(exactText("Перепланировать")).click();
         $("[data-test-id=success-notification]").waitUntil(visible, 15000);
-        $("[data-test-id=success-notification] .notification__content").shouldHave(text("Встреча успешно запланирована на")).shouldHave(text(user.getDate()));
+        $("[data-test-id=success-notification] .notification__content").shouldHave(text("Встреча успешно запланирована на")).shouldHave(text(otherDate));
     }
 
     @Test
